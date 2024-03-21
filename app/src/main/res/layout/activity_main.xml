@@ -41,7 +41,6 @@
         android:layout_below="@id/tv_email"
         android:padding="12dp"
         android:ems="10"
-        android:layout_marginStart="10dp"
         android:hint="@string/insira_o_seu_email"
         android:background="@drawable/edittext_background"
         android:inputType="textEmailAddress" />
@@ -64,19 +63,23 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/tv_senha"
-        android:layout_marginStart="10dp"
         android:hint="@string/insira_a_sua_senha"
+        android:padding="12dp"
+        android:ems="10"
         android:background="@drawable/edittext_background"
         android:inputType="textPassword" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_entrar"
-        android:layout_width="wrap_content"
+        style="@android:style/Widget.Button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edt_senha"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
-        android:text="@string/entrar" />
+        android:background="@drawable/button_background"
+        android:text="@string/entrar"
+        android:textColor="@color/white" />
     <TextView
         android:id="@+id/tv_entre_com"
         android:layout_width="wrap_content"
@@ -141,8 +144,8 @@
 
     <ImageButton
         android:id="@+id/bt_facebook"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/tv_entre_com"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
@@ -152,8 +155,8 @@
 
     <ImageButton
         android:id="@+id/bt_google"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/tv_entre_com"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
@@ -165,8 +168,8 @@
 
     <ImageButton
         android:id="@+id/bt_twitter"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@id/tv_entre_com"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="40dp"

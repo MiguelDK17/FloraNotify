@@ -11,5 +11,7 @@
     <string name="entrar_com_facebook">Entrar com Facebook</string>
     <string name="entrar_com_conta_google">Entrar com conta Google</string>
     <string name="entrar_com_twitter">Entrar com Twitter</string>
+    <string name="cadastre_se">Cadastre-se</string>
+    <string name="nome">Nome</string>
 
 </resources>
