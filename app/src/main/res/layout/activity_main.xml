@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="249dp"
+        android:layout_height="214dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/_19_removebg_preview" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="-30dp"
+        android:layout_toStartOf="@+id/imageView"
+        android:text="@string/ol_fa_a_login"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_alignStart="@+id/edt_usuario"
+        android:text="@string/email"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"/>
+
+
+    <EditText
+        android:id="@+id/edt_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/tv_email"
+        android:padding="12dp"
+        android:ems="10"
+        android:layout_marginStart="10dp"
+        android:hint="@string/insira_o_seu_email"
+        android:background="@drawable/edittext_background"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/tv_senha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edt_usuario"
+        android:layout_alignStart="@+id/edt_senha"
+        android:text="@string/senha"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
+
+
+
+    <EditText
+        android:id="@+id/edt_senha"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/tv_senha"
+        android:layout_marginStart="10dp"
+        android:hint="@string/insira_a_sua_senha"
+        android:background="@drawable/edittext_background"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/bt_entrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edt_senha"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/entrar" />
+    <TextView
+        android:id="@+id/tv_entre_com"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ln_cadastro"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/ou_entre_com"
+        android:textColor="@color/black" />
+
+
+    <LinearLayout
+        android:id="@+id/ln_esqueceu_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt_entrar"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_esqueceu_senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Esqueceu a senha ?" />
+
+        <Button
+            android:id="@+id/btRedefinir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="90dp"
+            android:text="Redefinir" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ln_cadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ln_esqueceu_senha"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_ainda_nao_cadastrou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Ainda não se cadastrou ?" />
+
+
+        <Button
+            android:id="@+id/bt_cadastro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="55dp"
+            android:text="Cadastre-se" />
+
+
+    </LinearLayout>
+
+
+    <ImageButton
+        android:id="@+id/bt_facebook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/tv_entre_com"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:background="@drawable/facebook_5968903"
+        android:contentDescription="@string/entrar_com_facebook" />
+
+    <ImageButton
+        android:id="@+id/bt_google"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/tv_entre_com"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/icone_google"
+        android:backgroundTint="?attr/colorPrimary"
+        android:contentDescription="@string/entrar_com_conta_google" />
+
+    <!--Agradecimentos a https://br.freepik.com/icone/pesquisa_281764#fromView=search&page=1&position=1&uuid=bd00b014-6c85-465d-97aa-6faea3b335e7-->
+
+    <ImageButton
+        android:id="@+id/bt_twitter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/tv_entre_com"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/twitter_5968958"
+        android:backgroundTint="?attr/colorPrimary"
+        android:contentDescription="@string/entrar_com_twitter"/>
+
+    <!-- Agradecimentos "https://br.freepik.com/icone/twitter_5968958#fromView=search&page=1&position=2&uuid=96c7cbee-4cf5-4306-8b99-66bad5de6644" Ícone de Freepik -->
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

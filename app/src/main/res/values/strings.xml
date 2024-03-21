@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FloraNotify</string>
+    <string name="usu_rio">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="ol_fa_a_login">Olá, faça login</string>
+    <string name="email">Email</string>
+    <string name="insira_o_seu_email">Insira o seu email</string>
+    <string name="insira_a_sua_senha">Insira a sua senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="ou_entre_com">Ou entre com:</string>
+    <string name="entrar_com_facebook">Entrar com Facebook</string>
+    <string name="entrar_com_conta_google">Entrar com conta Google</string>
+    <string name="entrar_com_twitter">Entrar com Twitter</string>
+
+</resources>
