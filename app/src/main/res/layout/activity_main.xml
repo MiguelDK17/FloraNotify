@@ -69,7 +69,7 @@
         android:background="@drawable/edittext_background"
         android:inputType="textPassword" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/bt_entrar"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"

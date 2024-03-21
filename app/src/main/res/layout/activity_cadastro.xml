@@ -16,7 +16,7 @@
         android:id="@+id/tv_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome"
+        android:text="@string/nome"
         android:layout_below="@id/tv_cadastre"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -29,7 +29,8 @@
         android:layout_below="@id/tv_nome"
         android:padding="12dp"
         android:ems="10"
-        android:hint="Insira o seu nome"
+        android:autofillHints="name"
+        android:hint="@string/insira_o_seu_nome"
         android:background="@drawable/edittext_background"
         android:inputType="textEmailAddress" />
 
@@ -51,6 +52,7 @@
         android:layout_height="50dp"
         android:layout_below="@id/tv_email"
         android:padding="12dp"
+        android:autofillHints="emailAddress"
         android:ems="10"
         android:hint="@string/insira_o_seu_email"
         android:background="@drawable/edittext_background"
@@ -77,6 +79,7 @@
         android:hint="@string/insira_a_sua_senha"
         android:padding="12dp"
         android:ems="10"
+        android:autofillHints="password"
         android:background="@drawable/edittext_background"
         android:inputType="textPassword" />
 
@@ -86,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edt_senha"
         android:layout_alignStart="@+id/edt_senha"
-        android:text="Repita a senha"
+        android:text="@string/repita_a_senha"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="30dp"/>
@@ -98,21 +101,23 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/tv_repita_senha"
-        android:hint="Repita a sua senha"
+        android:hint="@string/repita_a_sua_senha"
         android:padding="12dp"
         android:ems="10"
+        android:autofillHints="password"
         android:background="@drawable/edittext_background"
         android:inputType="textPassword" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/bt_entrar"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edt_repita_senha"
+        android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
         android:background="@drawable/button_background"
-        android:text="Cadastrar-se"
+        android:text="@string/cadastrar_se"
         android:textColor="@color/white" />
 
 

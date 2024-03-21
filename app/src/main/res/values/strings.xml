@@ -13,5 +13,9 @@
     <string name="entrar_com_twitter">Entrar com Twitter</string>
     <string name="cadastre_se">Cadastre-se</string>
     <string name="nome">Nome</string>
+    <string name="insira_o_seu_nome">Insira o seu nome</string>
+    <string name="repita_a_senha">Repita a senha</string>
+    <string name="repita_a_sua_senha">Repita a sua senha</string>
+    <string name="cadastrar_se">Cadastrar-se</string>
 
 </resources>
