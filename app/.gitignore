@@ -1,1 +1,6 @@
 /build
+google-services.json
+output-metadata.json
+app-release.apk
+FloraNotify.apk
+appInsightsSettings.xml
