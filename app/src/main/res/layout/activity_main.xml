@@ -31,7 +31,7 @@
         android:text="@string/email"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="20dp"/>
 
 
     <EditText
@@ -54,7 +54,7 @@
         android:text="@string/senha"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"/>
 
 
 
@@ -71,7 +71,6 @@
 
     <Button
         android:id="@+id/bt_entrar"
-        style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edt_senha"
@@ -148,7 +147,7 @@
         android:layout_height="40dp"
         android:layout_below="@id/tv_entre_com"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="?attr/colorPrimary"
         android:background="@drawable/facebook_5968903"
         android:contentDescription="@string/entrar_com_facebook" />
@@ -159,7 +158,7 @@
         android:layout_height="40dp"
         android:layout_below="@id/tv_entre_com"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/icone_google"
         android:backgroundTint="?attr/colorPrimary"
         android:contentDescription="@string/entrar_com_conta_google" />
@@ -172,7 +171,7 @@
         android:layout_height="40dp"
         android:layout_below="@id/tv_entre_com"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/twitter_5968958"
         android:backgroundTint="?attr/colorPrimary"
