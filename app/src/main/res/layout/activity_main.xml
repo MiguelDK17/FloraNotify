@@ -10,6 +10,7 @@
         android:layout_width="249dp"
         android:layout_height="214dp"
         android:layout_alignParentEnd="true"
+        android:scaleType="fitEnd"
         android:src="@drawable/_19_removebg_preview" />
 
     <TextView

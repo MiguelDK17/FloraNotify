@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1f4ea">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/v783_noon_13b"
+        android:scaleType="fitStart"/>
+    <!-- Agradecimentos a "https://br.freepik.com/vetores-gratis/espaco-de-copia-frondosa-botanica-em-um-vetor-de-fundo-de-telefone-creme_35510835.htm#fromView=search&page=1&position=5&uuid=95b3028d-7e60-4b53-9728-0880de1b936d"Imagem de rawpixel.com no Freepik -->
+
+    <TextView
+        android:id="@+id/tv_cadastre"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:text="@string/redefinir_senha"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="232dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_cadastre"
+        android:layout_marginTop="100dp"
+        android:text="@string/por_favor_insira_o_seu_endere_o_de_email"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/tv_insira_email"/>
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_insira_email"
+        android:layout_alignStart="@+id/tv_insira_email"
+        android:text="@string/email"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"/>
+    <EditText
+        android:id="@+id/edt_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/tv_email"
+        android:padding="12dp"
+        android:autofillHints="emailAddress"
+        android:ems="10"
+        android:hint="@string/insira_o_seu_email"
+        android:background="@drawable/edittext_background"
+        android:inputType="textEmailAddress" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_enviar_email"
+        style="@android:style/Widget.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edt_email"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_background"
+        android:text="@string/enviar_email_de_recupera_o"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>

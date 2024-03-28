@@ -17,5 +17,8 @@
     <string name="repita_a_senha">Repita a senha</string>
     <string name="repita_a_sua_senha">Repita a sua senha</string>
     <string name="cadastrar_se">Cadastrar-se</string>
+    <string name="redefinir_senha">Redefinir Senha</string>
+    <string name="enviar_email_de_recupera_o">Enviar email de recuperação</string>
+    <string name="por_favor_insira_o_seu_endere_o_de_email">Por favor, insira o seu endereço de email</string>
 
 </resources>
