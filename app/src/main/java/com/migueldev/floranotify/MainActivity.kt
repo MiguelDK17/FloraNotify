@@ -19,7 +19,12 @@ class MainActivity : AppCompatActivity() {
         val context = view.context
         val btCadastro = binding.btCadastro
         val btRedefinirSenha = binding.btRedefinir
+        val btLogin = binding.btLogin
         setContentView(view)
+
+        btLogin.setOnClickListener {
+            
+        }
 
         btCadastro.setOnClickListener {
             val intent = Intent(context, Cadastro::class.java)

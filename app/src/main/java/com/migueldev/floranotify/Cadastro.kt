@@ -76,11 +76,7 @@ class Cadastro: AppCompatActivity() {
 
                 }
             }
-            .addOnFailureListener { error->
-                Toast.makeText(
-                    this,getString(R.string.verifique_conexao_internet)
-                    ,Toast.LENGTH_SHORT).show()
-            }
+
 
     }
 }
