@@ -118,7 +118,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/bt_entrar"
+        android:id="@+id/bt_criar_conta"
         style="@android:style/Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

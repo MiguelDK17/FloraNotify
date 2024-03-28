@@ -71,7 +71,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/bt_entrar"
+        android:id="@+id/bt_criar_conta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edt_senha"
@@ -95,7 +95,7 @@
         android:id="@+id/ln_esqueceu_senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bt_entrar"
+        android:layout_below="@id/bt_criar_conta"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 

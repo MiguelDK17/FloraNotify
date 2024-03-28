@@ -20,5 +20,6 @@
     <string name="redefinir_senha">Redefinir Senha</string>
     <string name="enviar_email_de_recupera_o">Enviar email de recuperação</string>
     <string name="por_favor_insira_o_seu_endere_o_de_email">Por favor, insira o seu endereço de email</string>
+    <string name="verifique_conexao_internet">Verifique a conexão com a internet e tente novamente</string>
 
 </resources>
