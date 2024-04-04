@@ -56,10 +56,11 @@ class Cadastro: AppCompatActivity() {
                         "nome" to nome,
                         "foto" to "foto"
                     )
+                    //atualiza o nome do usuário no FirebaseAuth
                     val profilerUpdates = userProfileChangeRequest {
                         displayName = nome
                     }
-
+                    //Cria um documento no Firestore com os dados fornecidos pelo usuário
                     val user = mAuth.currentUser
                     user!!.updateProfile(profilerUpdates)
                         .addOnCompleteListener{ task ->
@@ -74,7 +75,15 @@ class Cadastro: AppCompatActivity() {
                             }
                         }
 
+
                 }
+            }
+            .addOnFailureListener {
+                //Se a criação da conta falhar
+                Toast.makeText(
+                    binding.root.context,
+                    getString(R.string.verifique_a_sua_conex_o_e_tente_novamente), Toast.LENGTH_SHORT
+                ).show()
             }
 
 

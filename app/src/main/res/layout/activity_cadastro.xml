@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/v783_noon_13b"
+        android:src="@drawable/v783_noon_03b"
         android:scaleType="fitStart"/>
     <!-- Agradecimentos a "https://br.freepik.com/vetores-gratis/espaco-de-copia-frondosa-botanica-em-um-vetor-de-fundo-de-telefone-creme_35510835.htm#fromView=search&page=1&position=5&uuid=95b3028d-7e60-4b53-9728-0880de1b936d"Imagem de rawpixel.com no Freepik -->
 

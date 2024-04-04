@@ -21,5 +21,11 @@
     <string name="enviar_email_de_recupera_o">Enviar email de recuperação</string>
     <string name="por_favor_insira_o_seu_endere_o_de_email">Por favor, insira o seu endereço de email</string>
     <string name="verifique_conexao_internet">Verifique a conexão com a internet e tente novamente</string>
+    <string name="verifique_a_sua_conex_o_e_tente_novamente">Verifique a sua conexão e tente novamente</string>
+    <string name="os_campos_n_o_podem_ficar_vazios">Os campos não podem ficar vazios</string>
+    <string name="o_campo_email_n_o_pode_ficar_vazio">O campo email não pode ficar vazio</string>
+    <string name="o_campo_senha_n_o_pode_ficar_vazio">O campo senha não pode ficar vazio</string>
+    <string name="login_realizado_com_sucesso">Login realizado com sucesso</string>
+    <string name="email_ou_senha_incorretos">Email ou senha incorretos</string>
 
 </resources>
