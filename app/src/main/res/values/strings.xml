@@ -27,5 +27,6 @@
     <string name="o_campo_senha_n_o_pode_ficar_vazio">O campo senha não pode ficar vazio</string>
     <string name="login_realizado_com_sucesso">Login realizado com sucesso</string>
     <string name="email_ou_senha_incorretos">Email ou senha incorretos</string>
+    <string name="id_server">152798821558-g09sfljr1m1laa8r2msaac5s6v0t4s0t.apps.googleusercontent.com</string>
 
 </resources>

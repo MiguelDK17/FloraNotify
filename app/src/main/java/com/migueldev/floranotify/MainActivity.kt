@@ -1,16 +1,33 @@
 package com.migueldev.floranotify
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.auth.Token
 import com.migueldev.floranotify.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var oneTapClient: SignInClient
+    //Um inteiro único por Activity
+    private val REQU_ONE_TAP = 2
+    private var showOneTapUI = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -24,8 +41,9 @@ class MainActivity : AppCompatActivity() {
         val btLogin = binding.btLogin
         val edtEmail = binding.edtUsuario
         val edtSenha = binding.edtSenha
+        val btGoogle = binding.btGoogle
 
-        val user = FirebaseAuth.getInstance().currentUser
+        val user = mAuth.currentUser
         if (user != null) {
             val intent = Intent(applicationContext, Principal::class.java)
             startActivity(intent)
@@ -57,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                 ).show()
                 //se não irá prosseguir para a função login
             } else {
-                login()
+                loginEmail()
             }
         }
 
@@ -70,11 +88,20 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(context, RedefinirSenha::class.java)
             startActivity(intent)
         }
+        btGoogle.setOnClickListener {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(R.string.id_server.toString())
+                .requestEmail()
+                .build()
+            val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-
+            val signInIntent =
+                mGoogleSignInClient.signInIntent
+            startActivityForResult(signInIntent,REQU_ONE_TAP)
+        }
 
     }
-    private fun login(){
+    private fun loginEmail(){
         val edtUsuario = binding.edtUsuario
         val edtSenha = binding.edtSenha
         val pbCarregando = binding.progressBar
@@ -111,6 +138,40 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQU_ONE_TAP){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+
+            try {
+                val conta = task.getResult(ApiException::class.java)
+                loginGoogle(conta!!)
+            } catch (e: ApiException){
+                Log.d(TAG, "onActivityResult: $e")
+            }
+        }
+    }
+    private fun loginGoogle(acct: GoogleSignInAccount){
+        val credential = GoogleAuthProvider.getCredential(acct.idToken,null)
+
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this){
+                task ->
+                if (task.isSuccessful){
+                    val intent = Intent(applicationContext, Principal::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(
+                        applicationContext, R.string.verifique_a_sua_conex_o_e_tente_novamente, Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+
+
+
     override fun onBackPressed() {
         super.onBackPressed()
         finishAffinity()
