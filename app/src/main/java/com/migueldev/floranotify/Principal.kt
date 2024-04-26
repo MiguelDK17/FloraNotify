@@ -52,7 +52,7 @@ class Principal: AppCompatActivity() {
                 "Deseja continuar ?"
             )
             setPositiveButton(
-                "sim"
+                "Sim"
             ) { dialog, which ->
                 FirebaseAuth.getInstance().signOut()
                 FirebaseApp.initializeApp(binding.root.context)?.delete()
@@ -60,7 +60,7 @@ class Principal: AppCompatActivity() {
                 startActivity(logout)
             }
             setNegativeButton(
-                "não"
+                "Não"
             ) { dialog, which ->
             }
         }

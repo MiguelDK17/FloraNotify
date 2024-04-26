@@ -7,24 +7,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
-import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.auth.Token
 import com.migueldev.floranotify.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var oneTapClient: SignInClient
     //Um inteiro único por Activity
     private val REQU_ONE_TAP = 2
     private var showOneTapUI = true
@@ -42,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         val edtEmail = binding.edtUsuario
         val edtSenha = binding.edtSenha
         val btGoogle = binding.btGoogle
+        val btFacebook = binding.btFacebook
 
         val user = mAuth.currentUser
         if (user != null) {
@@ -88,9 +83,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(context, RedefinirSenha::class.java)
             startActivity(intent)
         }
+
         btGoogle.setOnClickListener {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(R.string.id_server.toString())
+                .requestIdToken(getString(R.string.id_server))
                 .requestEmail()
                 .build()
             val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
@@ -100,6 +96,8 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(signInIntent,REQU_ONE_TAP)
         }
 
+        //Inicialize botão Facebook
+        val callbackManager = Callback
     }
     private fun loginEmail(){
         val edtUsuario = binding.edtUsuario
@@ -138,6 +136,23 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
     }
+    private fun loginGoogle(acct: GoogleSignInAccount){
+        val credential = GoogleAuthProvider.getCredential(acct.idToken,null)
+
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this){
+                    task ->
+                if (task.isSuccessful){
+                    val intent = Intent(applicationContext, Principal::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(
+                        applicationContext, R.string.verifique_a_sua_conex_o_e_tente_novamente, Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -150,24 +165,11 @@ class MainActivity : AppCompatActivity() {
                 loginGoogle(conta!!)
             } catch (e: ApiException){
                 Log.d(TAG, "onActivityResult: $e")
+                Log.d(TAG, "onActivityResult: ${e.status}")
             }
+        } else {
+            Log.d(TAG, "onActivityResult: O problema é o if")
         }
-    }
-    private fun loginGoogle(acct: GoogleSignInAccount){
-        val credential = GoogleAuthProvider.getCredential(acct.idToken,null)
-
-        mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this){
-                task ->
-                if (task.isSuccessful){
-                    val intent = Intent(applicationContext, Principal::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(
-                        applicationContext, R.string.verifique_a_sua_conex_o_e_tente_novamente, Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
     }
 
 

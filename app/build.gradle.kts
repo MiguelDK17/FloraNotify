@@ -59,7 +59,9 @@ dependencies {
     implementation ("com.google.firebase:firebase-storage-ktx")
     implementation ("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.android.gms:play-services-auth:21.1.0")
-    implementation("androidx.credentials:credentials:1.2.2")
+    implementation("com.facebook.android:facebook-login:latest.release")
+
+
 
 
     testImplementation("junit:junit:4.13.2")
