@@ -7,11 +7,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.migueldev.floranotify.databinding.ActivityMainBinding
@@ -21,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     //Um inteiro único por Activity
     private val REQU_ONE_TAP = 2
-    private var showOneTapUI = true
+    private lateinit var buttonFacebookLogin: LoginButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -96,8 +103,29 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(signInIntent,REQU_ONE_TAP)
         }
 
-        //Inicialize botão Facebook
-        val callbackManager = Callback
+
+        btFacebook.setOnClickListener {
+            //Inicialize botão Facebook
+            val callbackManager = CallbackManager.Factory.create()
+            buttonFacebookLogin.registerCallback(
+                callbackManager,
+                object : FacebookCallback<LoginResult> {
+                    override fun onSuccess(result: LoginResult) {
+                        Log.d(TAG, "onSuccess: $result")
+                        handleFacebookAccessToken(result.accessToken)
+                    }
+
+                    override fun onCancel() {
+                        Log.d(TAG, "onCancel: login cancelado")
+                    }
+
+                    override fun onError(error: FacebookException) {
+                        Log.d(TAG, "onError: $error")
+                    }
+                }
+            )
+
+        }
     }
     private fun loginEmail(){
         val edtUsuario = binding.edtUsuario
@@ -153,6 +181,26 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    private fun handleFacebookAccessToken(token: AccessToken){
+        Log.d(TAG, "handleFacebookAccessToken: $token")
+
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        mAuth.signInWithCredential(credential)
+            .addOnCompleteListener(this){task ->
+                if (task.isSuccessful){
+                    Log.d(TAG, "handleFacebookAccessToken: success")
+                    val intent = Intent(applicationContext, Principal::class.java)
+                    startActivity(intent)
+                }
+                else {
+                    Log.d(TAG, "handleFacebookAccessToken: ${task.exception}")
+
+                    Toast.makeText(
+                        applicationContext, R.string.verifique_a_sua_conex_o_e_tente_novamente, Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
