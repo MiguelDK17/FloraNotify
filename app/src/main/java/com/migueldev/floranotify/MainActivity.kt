@@ -2,8 +2,10 @@ package com.migueldev.floranotify
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -11,6 +13,8 @@ import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
+import com.facebook.FacebookSdk
+import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -22,12 +26,15 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.migueldev.floranotify.databinding.ActivityMainBinding
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mAuth: FirebaseAuth
     //Um inteiro único por Activity
     private val REQU_ONE_TAP = 2
+    private lateinit var callbackManager: CallbackManager
     private lateinit var buttonFacebookLogin: LoginButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,11 +52,15 @@ class MainActivity : AppCompatActivity() {
         val btGoogle = binding.btGoogle
         val btFacebook = binding.btFacebook
 
+        buttonFacebookLogin = LoginButton(context)
+
         val user = mAuth.currentUser
         if (user != null) {
             val intent = Intent(applicationContext, Principal::class.java)
             startActivity(intent)
         }
+
+
 
         btLogin.setOnClickListener {
             //Pega o conteúdo dos edits usuario e senha
@@ -105,9 +116,12 @@ class MainActivity : AppCompatActivity() {
 
 
         btFacebook.setOnClickListener {
+            FacebookSdk.sdkInitialize(context)
             //Inicialize botão Facebook
-            val callbackManager = CallbackManager.Factory.create()
-            buttonFacebookLogin.registerCallback(
+            callbackManager = CallbackManager.Factory.create()
+            Log.d(TAG, "onCreate: teste")
+            val loginManager = LoginManager
+            loginManager.getInstance().registerCallback(
                 callbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(result: LoginResult) {
@@ -204,6 +218,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        callbackManager.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQU_ONE_TAP){
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -215,7 +230,9 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "onActivityResult: $e")
                 Log.d(TAG, "onActivityResult: ${e.status}")
             }
-        } else {
+        }
+
+        else {
             Log.d(TAG, "onActivityResult: O problema é o if")
         }
     }

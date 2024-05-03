@@ -28,5 +28,7 @@
     <string name="login_realizado_com_sucesso">Login realizado com sucesso</string>
     <string name="email_ou_senha_incorretos">Email ou senha incorretos</string>
     <string name="id_server">152798821558-g09sfljr1m1laa8r2msaac5s6v0t4s0t.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">268670476337283</string>
+    <string name="facebook_token_client">35f3ae631e976af3760ef20179bd85b1</string>
 
 </resources>
