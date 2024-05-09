@@ -5,8 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import com.google.firebase.FirebaseApp
+import com.google.firebase.Firebase
+import com.google.firebase.app
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.migueldev.floranotify.databinding.ActivityPrincipalBinding
 
 class Principal: AppCompatActivity() {
@@ -17,6 +19,12 @@ class Principal: AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         val floatingActionButton = binding.floatingActionButton
+        if (FirebaseAuth.getInstance().currentUser == null){
+            println(null)
+        }
+        else {
+            println(FirebaseAuth.getInstance().currentUser)
+        }
 
 
         floatingActionButton.setOnClickListener {
@@ -54,8 +62,7 @@ class Principal: AppCompatActivity() {
             setPositiveButton(
                 "Sim"
             ) { dialog, which ->
-                FirebaseAuth.getInstance().signOut()
-                FirebaseApp.initializeApp(binding.root.context)?.delete()
+                Firebase.auth.signOut()
                 val logout = Intent(binding.root.context, MainActivity::class.java)
                 startActivity(logout)
             }

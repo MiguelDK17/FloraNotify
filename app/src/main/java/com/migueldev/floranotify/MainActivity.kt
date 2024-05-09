@@ -22,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        FirebaseApp.initializeApp(applicationContext)
         mAuth = FirebaseAuth.getInstance()
         val view = binding.root
         val context = view.context
@@ -54,11 +56,6 @@ class MainActivity : AppCompatActivity() {
 
         buttonFacebookLogin = LoginButton(context)
 
-        val user = mAuth.currentUser
-        if (user != null) {
-            val intent = Intent(applicationContext, Principal::class.java)
-            startActivity(intent)
-        }
 
 
 
@@ -114,33 +111,29 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(signInIntent,REQU_ONE_TAP)
         }
 
-
-        btFacebook.setOnClickListener {
-            FacebookSdk.sdkInitialize(context)
-            //Inicialize botão Facebook
-            callbackManager = CallbackManager.Factory.create()
-            Log.d(TAG, "onCreate: teste")
-            val loginManager = LoginManager
-            loginManager.getInstance().registerCallback(
-                callbackManager,
-                object : FacebookCallback<LoginResult> {
-                    override fun onSuccess(result: LoginResult) {
-                        Log.d(TAG, "onSuccess: $result")
-                        handleFacebookAccessToken(result.accessToken)
-                    }
-
-                    override fun onCancel() {
-                        Log.d(TAG, "onCancel: login cancelado")
-                    }
-
-                    override fun onError(error: FacebookException) {
-                        Log.d(TAG, "onError: $error")
-                    }
+        callbackManager = CallbackManager.Factory.create()
+        btFacebook.setReadPermissions("email", "public_profile")
+        btFacebook.registerCallback(
+            callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult) {
+                    Log.d(TAG, "onSuccess: $result")
+                    handleFacebookAccessToken(result.accessToken)
                 }
-            )
 
-        }
+                override fun onCancel() {
+                    Log.d(TAG, "onCancel: login cancelado")
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.d(TAG, "onError: $error")
+                }
+            }
+        )
+
     }
+
+
     private fun loginEmail(){
         val edtUsuario = binding.edtUsuario
         val edtSenha = binding.edtSenha
@@ -207,10 +200,11 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else {
+                    if (task.exception.toString() == getString(R.string.login_com_credencial_existente))
                     Log.d(TAG, "handleFacebookAccessToken: ${task.exception}")
 
                     Toast.makeText(
-                        applicationContext, R.string.verifique_a_sua_conex_o_e_tente_novamente, Toast.LENGTH_SHORT
+                        applicationContext, "Já existe uma conta com este email, porém com outra credencial de login", Toast.LENGTH_SHORT
                     ).show()
                 }
             }
@@ -218,6 +212,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        callbackManager = CallbackManager.Factory.create()
         callbackManager.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQU_ONE_TAP){

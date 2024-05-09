@@ -142,12 +142,11 @@
     </LinearLayout>
 
 
-    <ImageButton
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/bt_facebook"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/tv_entre_com"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="?attr/colorPrimary"
         android:background="@drawable/facebook_5968903"
